@@ -62,8 +62,8 @@ async function handleImageMessage(message: Message) {
 }
 
 async function handleVideoMessage(message: Message) {
-    await message.react("⛔");
     await message.reply(messages.videoUnsupported);
+    await message.react("⛔");
 }
 
 async function handleChatMessage(message: Message) {
