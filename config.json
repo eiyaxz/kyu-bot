@@ -1,5 +1,9 @@
 {
-    "helpCommand": "/ajuda",
-    "aboutCommand": "/sobre",
+    "stickerName": "Figurinha feita por",
+    "stickerAuthor": "@zuukynn/kyu-bot",
+    "commands": {
+        "helpCommand": "/ajuda",
+        "aboutCommand": "/sobre"
+    },
     "stretchImageKeywords": ["esticar", "stretch"]
 }

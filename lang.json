@@ -10,8 +10,6 @@
             "",
             "Feito com carinho por @zuukynn! ❤️"
         ],
-        "stickerName": "Figurinha feita por",
-        "stickerAuthor": "@zuukynn/kyu-bot",
         "createdStickerLog": "[INFO] %s criou uma figurinha!",
         "errorStickerLog": "[ERROR] %s obteve um erro!"
     },

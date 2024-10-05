@@ -3,7 +3,7 @@ import { format } from "util";
 import sharp from "sharp";
 
 import { system, messages } from "../lang.json";
-import { stretchImageKeywords, helpCommand, aboutCommand } from "../config.json";
+import { stretchImageKeywords, commands, stickerName, stickerAuthor } from "../config.json";
 
 export default async function handleMessageCreate(client: Client, message: Message) {
     if (message.fromMe) return;
@@ -48,8 +48,8 @@ async function handleImageMessage(message: Message) {
         
         await message.reply(media, undefined, {
             sendMediaAsSticker: true,
-            stickerName: system.stickerName,
-            stickerAuthor: system.stickerAuthor
+            stickerName,
+            stickerAuthor
         });
         await message.react("✅");
 
@@ -68,11 +68,11 @@ async function handleVideoMessage(message: Message) {
 
 async function handleChatMessage(message: Message) {
     switch (message.body.toLowerCase()) {
-        case helpCommand.toLowerCase():
+        case commands.helpCommand.toLowerCase():
             await message.reply(messages.help.join("\n"));
 
             break;
-        case aboutCommand.toLowerCase():
+        case commands.aboutCommand.toLowerCase():
             await message.reply(messages.about.join("\n"));
 
             break;
