@@ -1,0 +1,15 @@
+{
+    "authenticated": "Autenticado com sucesso! 🎉",
+    "welcomeMessage": [
+        "Olá! Eu sou o Kyu, um bot pra te fazer figurinhas! 😊",
+        "",
+        "- Para fazer uma figurinha, basta me enviar uma imagem! 🖼️",
+        "",
+        "Feito com carinho por @zuukynn! ❤️"
+    ],
+    "stickerName": "Figurinha feita por",
+    "stickerAuthor": "@zuukynn/kyu-bot",
+    "videoUnsupported": "Desculpe, mas eu não consigo converter vídeos em figurinhas! 🙁",
+    "createdStickerLog": "[INFO] %s criou uma figurinha!",
+    "errorStickerLog": "[ERROR] %s obteve um erro!"
+}
