@@ -1,14 +1,9 @@
-import { Client, Message } from "whatsapp-web.js";
+import { Client, Message, MessageMedia } from "whatsapp-web.js";
 import { format } from "util";
+import sharp from "sharp";
 
-import { 
-    welcomeMessage, 
-    stickerName, 
-    stickerAuthor, 
-    createdStickerLog, 
-    errorStickerLog, 
-    videoUnsupported 
-} from "../lang.json";
+import { system, messages } from "../lang.json";
+import { stretchImageKeywords, helpCommand, aboutCommand } from "../config.json";
 
 export default async function handleMessageCreate(client: Client, message: Message) {
     if (message.fromMe) return;
@@ -17,7 +12,7 @@ export default async function handleMessageCreate(client: Client, message: Messa
     const messages = await chat.fetchMessages({ fromMe: true });
 
     if (messages.length == 0) {
-        await client.sendMessage(message.from, welcomeMessage.join("\n"));
+        await client.sendMessage(message.from, system.welcomeMessage.join("\n"));
     }
 
     switch (message.type) {
@@ -26,6 +21,9 @@ export default async function handleMessageCreate(client: Client, message: Messa
             break;
         case "video":
             await handleVideoMessage(message);
+            break;
+        case "chat":
+            await handleChatMessage(message);
             break;
         default:
             break;
@@ -36,24 +34,53 @@ async function handleImageMessage(message: Message) {
     try {
         await message.react("🕙");
 
-        const media = await message.downloadMedia();
+        let media = await message.downloadMedia();
+
+        if (stretchImageKeywords.some(keyword => message.body.toLowerCase().includes(keyword.toLowerCase()))) {
+            const imageBuffer = Buffer.from(media.data, "base64");
+            const resizedImageBuffer = await sharp(imageBuffer)
+                .resize(512, 512, { fit: "fill" })
+                .toBuffer();
+            const resizedImage = resizedImageBuffer.toString("base64");
+
+            media = new MessageMedia(media.mimetype, resizedImage, media.filename);
+        }   
         
         await message.reply(media, undefined, {
             sendMediaAsSticker: true,
-            stickerName,
-            stickerAuthor
+            stickerName: system.stickerName,
+            stickerAuthor: system.stickerAuthor
         });
         await message.react("✅");
 
-        console.log(format(createdStickerLog, message.from));
+        console.log(format(system.createdStickerLog, message.from));
     } catch (error) {
         await message.react("⛔");
 
-        console.error(format(errorStickerLog, message.from), );
+        console.error(format(system.errorStickerLog, message.from), );
     }
 }
 
 async function handleVideoMessage(message: Message) {
     await message.react("⛔");
-    await message.reply(videoUnsupported);
+    await message.reply(messages.videoUnsupported);
+}
+
+async function handleChatMessage(message: Message) {
+    switch (message.body.toLowerCase()) {
+        case helpCommand.toLowerCase():
+            await message.reply(messages.help.join("\n"));
+
+            break;
+        case aboutCommand.toLowerCase():
+            await message.reply(messages.about.join("\n"));
+
+            break;
+        default:
+            if (message.body.startsWith("/")) {
+                await message.reply(messages.unknownCommand);
+            }
+
+            break;
+    }
 }

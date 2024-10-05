@@ -1,0 +1,5 @@
+{
+    "helpCommand": "/ajuda",
+    "aboutCommand": "/sobre",
+    "stretchImageKeywords": ["esticar", "stretch"]
+}

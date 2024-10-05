@@ -1,15 +1,41 @@
 {
-    "authenticated": "Autenticado com sucesso! 🎉",
-    "welcomeMessage": [
-        "Olá! Eu sou o Kyu, um bot pra te fazer figurinhas! 😊",
-        "",
-        "- Para fazer uma figurinha, basta me enviar uma imagem! 🖼️",
-        "",
-        "Feito com carinho por @zuukynn! ❤️"
-    ],
-    "stickerName": "Figurinha feita por",
-    "stickerAuthor": "@zuukynn/kyu-bot",
-    "videoUnsupported": "Desculpe, mas eu não consigo converter vídeos em figurinhas! 🙁",
-    "createdStickerLog": "[INFO] %s criou uma figurinha!",
-    "errorStickerLog": "[ERROR] %s obteve um erro!"
+    "system": {
+        "authenticated": "Autenticado com sucesso! 🎉",
+        "welcomeMessage": [
+            "Olá! Eu sou o Kyu, um bot pra te fazer figurinhas! 😊",
+            "",
+            "- Para fazer uma figurinha, basta me enviar uma imagem! 🖼️",
+            "- Você também pode escrever _esticar_ pra esticar a figurinha! ↔",
+            "- Digite /ajuda para ver os comandos disponíveis! 📚",
+            "",
+            "_Feito com carinho por @zuukynn! ❤️_"
+        ],
+        "stickerName": "Figurinha feita por",
+        "stickerAuthor": "@zuukynn/kyu-bot",
+        "createdStickerLog": "[INFO] %s criou uma figurinha!",
+        "errorStickerLog": "[ERROR] %s obteve um erro!"
+    },
+    "messages": {
+        "videoUnsupported": "Desculpe, mas eu não consigo converter vídeos em figurinhas! 🙁",
+        "unknownCommand": "Esse comando não existe... digite /ajuda para ver os comandos disponíveis! 😉",
+        "help": [
+            "Para começar, é só enviar uma imagem!",
+            "Você também pode escrever _esticar_ pra esticar a figurinha!",
+            "",
+            "Aqui estão os comandos disponíveis:",
+            "",
+            "- */ajuda:* Mostra essa mensagem de ajuda! 📚",
+            "- */sobre:* Mostra informações sobre o bot! 🤖",
+            "",
+            "_Feito com carinho por @zuukynn! ❤️_"
+        ],
+        "about": [
+            "Fui criado por um nerd  e sou um bot pra te fazer figurinhas! Meu código fonte é open-source e está disponível no GitHub! 😊",
+            "Se você quiser contribuir, leia as instruções no README.",
+            "",
+            "- https://github.com/zuukynn/kyu-bot",
+            "",
+            "Obrigado por usar o Kyu! Com amor, João ❤️"
+        ]
+    }
 }

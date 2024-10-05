@@ -3,13 +3,18 @@
   "version": "1.0.0",
   "description": "A simple WhatsApp bot to make stickers!",
   "author": "@zuukynn",
-  "keywords": ["whatsapp", "bot", "sticker"],
+  "keywords": [
+    "whatsapp",
+    "bot",
+    "sticker"
+  ],
   "main": "src/index.ts",
   "scripts": {
     "start": "tsnd --respawn --transpile-only --ignore-watch node_modules ."
   },
   "dependencies": {
     "qrcode-terminal": "^0.12.0",
+    "sharp": "^0.33.5",
     "whatsapp-web.js": "^1.26.0"
   },
   "devDependencies": {
