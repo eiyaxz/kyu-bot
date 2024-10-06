@@ -7,10 +7,7 @@ import { system } from "../lang.json";
 
 const client = new Client({
     authStrategy: new LocalAuth({ clientId: "kyu-bot", dataPath: ".wwebjs_data" }),
-    puppeteer: { 
-        args: ["--no-sandbox"], 
-        executablePath: resolve("..", "..", "..", "Program Files", "Google", "Chrome", "Application", "chrome.exe")
-    },
+    puppeteer: { args: ["--no-sandbox"] },
     ffmpegPath: resolve(__dirname, "..", "ffmpeg.exe"),
 });
 
