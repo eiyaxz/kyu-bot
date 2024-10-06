@@ -2,12 +2,10 @@ import { Client, Message, MessageMedia } from "whatsapp-web.js";
 import { format } from "util";
 import sharp from "sharp";
 
-import { system, messages } from "../lang.json";
 import { stretchImageKeywords, commands, stickerName, stickerAuthor } from "../config.json";
+import { system, messages } from "../lang.json";
 
-export default async function handleMessageCreate(client: Client, message: Message) {
-    if (message.fromMe) return;
-
+export default async function handleMessage(client: Client, message: Message) {
     const chat = await message.getChat();
     const messages = await chat.fetchMessages({ fromMe: true });
 
@@ -17,70 +15,69 @@ export default async function handleMessageCreate(client: Client, message: Messa
 
     switch (message.type) {
         case "image":
-            await handleImageMessage(message);
+            await handleStaticSticker(message);
             break;
         case "video":
-            await handleVideoMessage(message);
+            await handleAnimatedSticker(message);
             break;
         case "chat":
-            await handleChatMessage(message);
+            await handleCommand(message);
             break;
         default:
             break;
     }
 }
 
-async function handleImageMessage(message: Message) {
-    try {
-        await message.react("🕙");
+async function handleStaticSticker(message: Message) {
+    await message.react("🕙");
 
-        let media = await message.downloadMedia();
+    let media = await message.downloadMedia();
 
-        if (stretchImageKeywords.some(keyword => message.body.toLowerCase().includes(keyword.toLowerCase()))) {
-            const imageBuffer = Buffer.from(media.data, "base64");
-            const resizedImageBuffer = await sharp(imageBuffer)
-                .resize(512, 512, { fit: "fill" })
-                .toBuffer();
-            const resizedImage = resizedImageBuffer.toString("base64");
+    if (stretchImageKeywords.some(keyword => message.body.toLowerCase().includes(keyword.toLowerCase()))) {
+        const imageBuffer = Buffer.from(media.data, "base64");
+        const resizedImageBuffer = await sharp(imageBuffer)
+            .resize(512, 512, { fit: "fill" })
+            .toBuffer();
 
-            media = new MessageMedia(media.mimetype, resizedImage, media.filename);
-        }   
-        
-        await message.reply(media, undefined, {
-            sendMediaAsSticker: true,
-            stickerName,
-            stickerAuthor
-        });
-        await message.react("✅");
-
-        console.log(format(system.createdStickerLog, message.from));
-    } catch (error) {
-        await message.react("⛔");
-
-        console.error(format(system.errorStickerLog, message.from), );
+        media = new MessageMedia(media.mimetype, resizedImageBuffer.toString("base64"));
     }
+    
+    await message.reply(media, undefined, {
+        sendMediaAsSticker: true,
+        stickerName,
+        stickerAuthor
+    }).then(() => message.react("✅")).catch(() => message.react("⛔"));
+
+    console.log(format(system.createdStickerLog, message.from));
 }
 
-async function handleVideoMessage(message: Message) {
-    await message.reply(messages.videoUnsupported);
-    await message.react("⛔");
+async function handleAnimatedSticker(message: Message) {
+    await message.react("🕙");
+
+    const downloadedMedia = await message.downloadMedia();
+    await message.reply(downloadedMedia, undefined, {
+        sendMediaAsSticker: true,
+        stickerName,
+        stickerAuthor
+    }).then(() => message.react("✅")).catch(() => message.react("⛔"));
+
+    console.log(format(system.createdStickerLog, message.from));
 }
 
-async function handleChatMessage(message: Message) {
+async function handleCommand(message: Message) {
     switch (message.body.toLowerCase()) {
         case commands.helpCommand.toLowerCase():
             await message.reply(messages.help.join("\n"));
-
             break;
         case commands.aboutCommand.toLowerCase():
             await message.reply(messages.about.join("\n"));
-
             break;
         default:
-            if (message.body.startsWith("/")) {
-                await message.reply(messages.unknownCommand);
-            }
-
-            break;
+            if (!message.body.startsWith("/")) return;
+            await message.reply(messages.unknownCommand);
+            await message.react("⛔");
+            return;
     }
+
+    await message.react("✅");
 }

@@ -4,8 +4,9 @@
         "welcomeMessage": [
             "Olá! Eu sou o Kyu, um bot pra te fazer figurinhas! 😊",
             "",
-            "- Para fazer uma figurinha, basta me enviar uma imagem! 🖼️",
-            "- Você também pode escrever `esticar` pra esticar a figurinha! ↔",
+            "- Para fazer uma figurinha, basta me enviar uma imagem, vídeo ou GIF! 🖼️",
+            "- Se você enviar um vídeo, apenas os primeiros 5 segundos serão usados! 🎥",
+            "- Você também pode escrever `esticar` pra esticar a figurinha! (somente imagens) ↔",
             "- Digite `/ajuda` para ver os comandos disponíveis! 📚",
             "",
             "Feito com carinho por @zuukynn! ❤️"
@@ -14,11 +15,10 @@
         "errorStickerLog": "[ERROR] %s obteve um erro!"
     },
     "messages": {
-        "videoUnsupported": "Desculpe, mas eu não consigo converter vídeos em figurinhas! 🙁",
-        "unknownCommand": "Esse comando não existe... digite `/ajuda` para ver os comandos disponíveis! 😉",
+        "unknownCommand": "Esse comando não existe! Digite `/ajuda` para ver os comandos disponíveis! 🤗",
         "help": [
-            "Para começar, é só enviar uma imagem!",
-            "Você também pode escrever `esticar` pra esticar a figurinha!",
+            "Para começar, é só enviar uma imagem, vídeo ou GIF! Se você enviar um vídeo, apenas os primeiros 5 segundos serão usados!",
+            "Você também pode escrever `esticar` pra esticar a figurinha! (somente imagens)",
             "",
             "Aqui estão os comandos disponíveis:",
             "",
