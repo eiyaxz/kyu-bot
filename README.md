@@ -12,7 +12,7 @@ the bot that i used just stopped working, so i decided to create another one. it
 5. that's it! now you have a bot in your WhatsApp account.
 
 ## do you plan on updating it? 🧐
-if i ever need to, yeah. maybe i will add video + gif support, which shouldn't be hard at all.
+~~if i ever need to, yeah. maybe i will add video and gif support, which shouldn't be hard at all.~~ added! _(although i must say it was NOT easy...)_
 
 ## may i contribute? 🤓
 sure! just fork the project and open a PR and i will analyze it myself. i appreciate the help!
