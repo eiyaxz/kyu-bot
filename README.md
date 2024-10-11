@@ -12,7 +12,7 @@ the bot that i used just stopped working, so i decided to create another one. it
 ## okay... how do i use it? 😯
 1. first, clone the repository on your machine using `git clone https://github.com/zuukynn/kyu-bot.git`.
 2. install the project's dependencies using `npm install`.
-3. customize the `./config.json` files in order to fit your needs, the keys are pretty self-explanatory.
+3. customize the `./config.json` file in order to fit your needs, the keys are pretty self-explanatory.
 4. run `npm run start` and link your device using the QR code that's going to appear on your terminal. [click here](https://faq.whatsapp.com/1317564962315842/?cms_platform=web) if you don't know how to link a device.
 5. that's it! now you have a bot in your WhatsApp account.
 
