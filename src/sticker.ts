@@ -29,6 +29,12 @@ export default async function handleMessage(message: Message) {
 
 async function createSticker(message: Message) {
     let media = await message.downloadMedia();
+    
+    // Check if message is view once
+    if (!media) {
+        await message.react("⛔");
+        return;
+    }
 
     if (message.type === "image") {
         if (stretchKeyword.some(keyword => message.body.toLowerCase().includes(keyword.toLowerCase()))) {

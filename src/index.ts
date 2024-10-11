@@ -4,7 +4,7 @@ import { resolve } from "path";
 
 import { authenticated, checkUnread } from "../config.json";
 import handleMessage from "./sticker";
-import handleUnread from "./auth";
+import handleUnread from "./unread";
 
 const client = new Client({
     authStrategy: new LocalAuth({ clientId: "kyu-bot", dataPath: ".wwebjs_data" }),
